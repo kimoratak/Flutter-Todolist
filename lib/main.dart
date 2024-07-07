@@ -25,7 +25,7 @@ class TodoListScreen extends StatefulWidget {
 }
 
 class _TodoListScreenState extends State<TodoListScreen> {
-  final List<String> _todoList = ["hellow world"];
+  final List<String> _todoList = ["hellow"];
   final TextEditingController _textController = TextEditingController();
 
   void _addTodoItem(String task) {
@@ -52,33 +52,38 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Widget _buildTodoItem(String task, int index) {
-    return Container(
-      color: Colors.white, // Set background color here
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      child: ListTile(
-        title: Text(task),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: Icon(
-                Icons.edit,
-                size: 24,
-                color: Colors.grey[500],
-              ), // Adjust the size here
-              onPressed: () {
-                _showEditDialog(task, index);
-              },
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.delete,
-                size: 24,
-                color: Colors.red[700],
-              ), // Adjust the size here
-              onPressed: () => _removeTodoItem(index),
-            ),
-          ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue[100], // Set background color here
+          borderRadius: BorderRadius.circular(12.0), // Set border radius here
+        ),
+        child: ListTile(
+          title: Text(task),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.edit,
+                  size: 24,
+                  color: Colors.grey[500],
+                ), // Adjust the size here
+                onPressed: () {
+                  _showEditDialog(task, index);
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.delete,
+                  size: 24,
+                  color: Colors.red[600],
+                ), // Adjust the size here
+                onPressed: () => _removeTodoItem(index),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -161,13 +166,12 @@ class _TodoListScreenState extends State<TodoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan[50],
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Center(
             child: Text(
-          'To-Do List',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800),
+          'To Do',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
         )),
       ),
       body: Column(
@@ -176,8 +180,13 @@ class _TodoListScreenState extends State<TodoListScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
         onPressed: _showAddTaskDialog,
-        child: Icon(Icons.add, size: 24), // Adjust the size here
+        child: Icon(
+          Icons.add,
+          size: 24,
+          color: Colors.white,
+        ), // Adjust the size here
         tooltip: 'Add Task',
       ),
     );
